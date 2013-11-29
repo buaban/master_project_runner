@@ -1,3 +1,20 @@
+function submitReport(){
+	require(["dojo/_base/xhr"],	function(xhr) {
+			 
+		// Execute a HTTP GET request		
+		xhr.get({
+			// The URL to request
+			url: "http://localhost/website/runner.txt",
+			// The method that handles the request's successful result
+			// Handle the response any way you'd like!
+			load: function(result) {
+				alert("The message is: " + result);
+			}
+		});
+			
+	});
+}
+
 var isTestFinished = false;
 
 function startRunner(doc){
@@ -11,19 +28,20 @@ function startRunner(doc){
 	
 }
 
-function reportResult(resultElement){
+function reportResult(resultText){
 	var pattern = "\/(\\d+) error";	
-	var reg = new RegExp(pattern,"i");
-	var error = reg.test("/137 errors");
-	var myArray = reg.exec("/137 errors");
+	var reg = new RegExp(pattern,"i");	
+	//var error = reg.test("/137 errors");
+	var myArray = reg.exec(resultText);
 	
-	if(myArray.length === 2){
+	if(myArray != null && myArray.length === 2){
 		var errorNum = myArray[1];
 		if(errorNum > 0){
-			window.console.log("Error: " + errorNum);
+			window.console.log("Error: " + errorNum);			
 		} else {
 			window.console.log("No Error");
 		}
+		submitReport();
 	}
 }
 
@@ -37,7 +55,7 @@ function isFinished(doc){
 			window.console.log("Done.");
 			isTestFinished = true;
 			clearInterval(interval);
-			reportResult(resultElement);
+			reportResult(resultElement[0].innerText);
 		} else {
 			window.console.log("Not done. ");
 		}
@@ -55,5 +73,3 @@ function getParameterByName(name) {
 	results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-
-
