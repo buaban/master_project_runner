@@ -8,7 +8,7 @@ function submitReport(){
 			// The method that handles the request's successful result
 			// Handle the response any way you'd like!
 			load: function(result) {
-				alert("The message is: " + result);
+				//alert("The message is: " + result);
 			}
 		});
 			
@@ -22,7 +22,7 @@ function startRunner(doc){
 	var testUrl = getParameterByName("testUrl");
 	iframeElement.contentWindow.location = testUrl;
 	//iframeElement.reload();
-	
+	//alert(testUrl);
 	isTestFinished = isFinished(doc);
 
 	

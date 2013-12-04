@@ -9,16 +9,17 @@ http.createServer(function (request, response) {
 	response.writeHead(200, {'Content-Type': 'text/plain'});
 	var res;
 	if(qString.action === "cover_func"){
-		console.log('Start cover func');
-		res = storeTest(qString.testId, qString.funcName, qString.lineStart, qString.lineEnd, qString.parameters);
+		console.log('Start cover func: ' + qString.testId + " " + qString.funcName + " " +  qString.lines + " " +  qString.parameters);
+		//res = storeTest(qString.testId, qString.funcName, qString.lineStart, qString.lineEnd, qString.parameters);
 	} else if (qString.action === "cover_line"){
-		console.log('Start cover line');
-		res = storeResult();
+		console.log('Start cover line: ' + qString.testId + " " + qString.funcName + " " +  qString.line);
+		
+		//res = storeResult();
 	}
 	
 	//res= 'TestID:' + qString.testID + ' | ID:'+qString.id + ' | Function Name: ' + qString.funcName + ' | Parameters:' + qString.parameters + ' | PATH:' + qString.path;
 	
-	response.end(res);
+	response.end("OK");
 }).listen(11112);
 console.log('======= Start server =======');	
 
