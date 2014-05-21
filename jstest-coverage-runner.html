@@ -1,20 +1,22 @@
 <html>
 <head>
-  <title>JSTest Coverage</title>
-  <style>
-	#banner {
-		background-color: rgb(125, 190, 125);
-		font-size: 2em;		
-	}
-  </style>
+	<title>JSTest Coverage</title>
+	<style>
+		#banner {
+			background-color: rgb(125, 190, 125);
+			font-size: 2em;		
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.iteration = "0";
+	</script>
 </head>
-<script src="socket.io/socket.io.js"></script>
 <script src="../../dojo/dojo.js" data-dojo-config="async: true"></script>
 <script src="jstestcoverage.js"></script>
-<script type="text/javascript"></script>
 
 <body onload="startRunner(document);">
-	<div id="banner">JSTest Coverage runner</div>
+	<div id="banner">JSCoverageRunner</div>
 	<iframe id="doh-runner" src="about:blank" width="100%" height="100%"></iframe>  
 </body>
 </html>

@@ -1,16 +1,18 @@
-function submitReport(){
-	require(["dojo/_base/xhr"],	function(xhr) {
-			 
+var JSCOVERAGESERVER_URL = "http://localhost/jstestcoverage-server/test";
+
+function submitReport(result){
+	require(["dojo/_base/xhr"],	function(xhr) {		
+
 		// Execute a HTTP GET request		
 		xhr.get({
 			// The URL to request
-			url: "http://localhost/website/runner.txt",
+			url: JSCOVERAGESERVER_URL + "?action=test_result&result=" + result,
 			// The method that handles the request's successful result
 			// Handle the response any way you'd like!
 			load: function(result) {
-				//alert("The message is: " + result);
+				
 			}
-		});
+		});		
 			
 	});
 }
@@ -37,11 +39,12 @@ function reportResult(resultText){
 	if(myArray != null && myArray.length === 2){
 		var errorNum = myArray[1];
 		if(errorNum > 0){
-			window.console.log("Error: " + errorNum);			
+			window.console.log("Error: " + errorNum);	
+			submitReport("error");
 		} else {
 			window.console.log("No Error");
-		}
-		submitReport();
+			submitReport("pass");
+		}		
 	}
 }
 
